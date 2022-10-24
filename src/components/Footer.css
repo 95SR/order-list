@@ -1,0 +1,16 @@
+.footer{
+    background-color: var(--color-hd);
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-container{
+    width: 95vw;
+    
+}
+
+span{
+    color: white;
+}

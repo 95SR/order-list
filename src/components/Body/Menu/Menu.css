@@ -1,0 +1,23 @@
+.menu-container{
+    background-color: white;
+    height: fit-content
+}
+
+.menu-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+.menu-items{
+    font-size: 1.5rem;
+}
+
+.menu-items li{
+    margin: 2rem 0;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
