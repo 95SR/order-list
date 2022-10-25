@@ -1,0 +1,52 @@
+  .input-body{
+    background-color: white;
+    padding: 1rem;
+    
+    
+  }
+  form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    gap: 30px;
+  }
+
+  .input-items{
+    display: flex;
+    background-color: aqua;
+    justify-content: space-between
+  }
+
+  .form-item{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  input,select{
+    width: 70%;
+    padding: 5px;
+  }
+  label{
+    width: 30%;
+  }
+
+ .prod-container{
+    flex-direction: column;
+    
+ }
+
+ .input-items-cont{
+    display: flex;
+ }
+
+.prod-container .btn-container{
+    width: 100%;
+    background-color: tomato;
+    
+}
+
+
+ 

@@ -67,14 +67,19 @@ body{
 .btn{
   background-color: var(--color-hd);
   border: none;
-  border-radius: 10pt;
-  width: 30px;
+  border-radius: 2pt;
+  width: 5rem;
+  padding: 5px;
+  cursor: pointer;
 }
 
 .btn-scd{
   background-color: transparent;
   border: 1px solid var(--color-hd);
-  width: 30px;
+  width: 5rem;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 2pt;
 }
 
 
