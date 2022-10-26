@@ -1,6 +1,6 @@
   .input-body{
     background-color: white;
-    padding: 1rem;
+    padding: 2rem;
     
     
   }
@@ -14,7 +14,7 @@
 
   .input-items{
     display: flex;
-    background-color: aqua;
+    gap: 10px;
     justify-content: space-between
   }
 
@@ -22,31 +22,100 @@
     width: 40%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    gap: 10px;
+    
   }
 
   input,select{
-    width: 70%;
+    flex: 1 0;
     padding: 5px;
   }
   label{
-    width: 30%;
+    width: 100px;
+    text-align: left;
+    
+    
   }
 
  .prod-container{
     flex-direction: column;
-    
+    gap: 10px;
  }
 
  .input-items-cont{
     display: flex;
+    justify-content: space-between;
  }
 
 .prod-container .btn-container{
     width: 100%;
-    background-color: tomato;
+   
+    display: flex;
+    justify-content: flex-end;
     
 }
 
 
- 
+
+.form-item-add{
+  width: 100%;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+#add{
+  width: 100%;
+}
+
+form>.btn-container{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  
+}
+
+@media screen and (max-width:1320px) {
+  .form-item{
+    width: 50%;    
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .form-item,
+  .input-items,
+  .form-item-add{
+    flex-direction: column;
+  }  
+
+  .form-item,label, input, select{
+    width: 100%;
+  }
+
+  form>.btn-container{
+    flex-direction: column;
+    align-items: center;
+    
+  }
+}
+
+.order-inputted{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 100px;
+  
+  margin: 20px 0;
+}
+
+.ord{
+  width: 50px;
+}
+
+.edit,.delete{
+  cursor: pointer;
+}

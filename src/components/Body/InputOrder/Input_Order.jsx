@@ -1,10 +1,12 @@
 import React from 'react'
 import { BsFillCartPlusFill } from "react-icons/bs";
+import { AiOutlineEdit,AiFillDelete } from "react-icons/ai";
 import './Input_Order.css'
+import Inputted_Order from './Inputted_Order';
 
 function Input_Order() {
   return (
-    <div className='main-container'>
+    <div >
 
         <div className="title">
         <BsFillCartPlusFill/>주문 입력
@@ -32,24 +34,27 @@ function Input_Order() {
               </div>
                 
               
-              <div className="input-items-cont">
-              <div className="form-item">
-                <label htmlFor="product">제품</label>
-                <select name="product" id="product">
-                  <option value="앙">앙</option>
-                  <option value="무">무</option>
-                  <option value="숙">숙</option>
-                  <option value="밤">밤</option>
-                </select>
-              </div> 
+              <div className="input-items-cont input-items">
+                <div className="form-item">
+                  <label htmlFor="product">제품</label>
+                  <select name="product" id="product">
+                    <option value="앙">앙</option>
+                    <option value="무">무</option>
+                    <option value="숙">숙</option>
+                    <option value="밤">밤</option>
+                  </select>
+                </div> 
 
-              <div className="form-item">
-                <label htmlFor="qt">수량</label>
-                <input type="number" name='qt' id='qt'/>              
-              
+                <div className="form-item">
+                  <label htmlFor="qt">수량</label>
+                  <input type="number" name='qt' id='qt'/>              
+                
+                </div>
               </div>
-              </div>
-                         
+
+              <Inputted_Order/>
+
+                     
             </div>  
 
 
@@ -79,9 +84,9 @@ function Input_Order() {
             </div>
 
             <div className="input-items">
-              <div className="form-item">
+              <div className="form-item-add">
                 <label htmlFor="add">주소</label>
-                <input type="text" name='add'/>
+                <input type="text" name='add' id='add'/>
               </div>
 
               <div className="btn">
@@ -94,7 +99,7 @@ function Input_Order() {
               <input type="date" name="date" id="date" />
             </div>
 
-            <div className="btn-container input-items">
+            <div className="btn-container">
               <button className='btn'>Submit</button>
               <button className='btn-scd'>Cancel</button>
             </div>
