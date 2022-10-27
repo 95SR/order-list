@@ -6,31 +6,37 @@ import Inputted_Order from './Inputted_Order';
 
 function Input_Order() {
   
-  const [product, setProduct] = useState('ㄷ');
-  const [qt, setQt] = useState('2');
-  const [updateProduct, setUpdateProduct] = useState(product)
-  const [updateQt, setUpdateQt] = useState(qt)
-
-  const initOrder = [{product: product, qt:qt}]
-  const [order,setOrder] = useState(initOrder)
+  const [product, setProduct] = useState('');
+  const [qt, setQt] = useState('');
+  const [order, setOrder] = useState([])
   
-
   const productValue = (e) =>{
     
     setProduct(e.target.value)
+    
   }
 
   const qtValue = (e) =>{
     
     setQt(e.target.value)
+    
   }
 
-  const applyOrder = () => {
-    console.log("clicked")
+  const handleOrder =() => {
     
-    setOrder(current => [...current,{product: product, qt:qt}])
-    setUpdateProduct(product)
-    setUpdateQt(qt)
+    addOrder(product,qt)
+    setProduct('')
+    setQt('')
+    
+
+  }
+
+  const addOrder = (product,qt) => {
+    setOrder([...order,{product,qt,id:Math.random()}])
+  }
+
+  const delOrder = (key) => {
+    const newOrder = order.filter(item => item.id !== key)
     console.log(order)
   }
 
@@ -59,7 +65,7 @@ function Input_Order() {
 
             <div className="input-items prod-container">
               <div className="btn-container">
-                <div className="btn-scd apply" onClick={applyOrder}>
+                <div className="btn-scd apply" onClick={handleOrder}>
                     적용
                   </div>
               </div>
@@ -68,7 +74,7 @@ function Input_Order() {
               <div className="input-items-cont input-items">
                 <div className="form-item">
                   <label htmlFor="product">제품</label>
-                  <select name="product" id="product" onChange={productValue} >
+                  <select name="product" id="product" onChange={productValue} value={product}>
                     <option value="" disabled selected>선택</option>
                     <option value="앙">앙</option>
                     <option value="무">무</option>
@@ -79,21 +85,29 @@ function Input_Order() {
 
                 <div className="form-item">
                   <label htmlFor="qt">수량</label>
-                  <input type="number" name='qt' id='qt' onChange={qtValue}/>              
+                  <input type="number" name='qt' id='qt' value={qt} onChange={qtValue}/>              
                 
                 </div>
-              </div>
+              </div>   
 
-              {order.map((element,index) => {
-                return (
-                  <Inputted_Order key={index} product={element.product} qt={element.qt}/>
-                )
+              {order.map((item,key) => {
+                return(
+                  <div className="order-inputted" key={key}>
+    <input type="text" value={item.product} className='ord' />
+    <input type="number" value={item.qt} className='ord' />
+    
+    
+    <div className="delete" onClick={(e)=>console.log(key)}>
+    <AiFillDelete/>
+    </div>
+    
+    
+  </div> 
+                  
+                  )
               })
-
-              }
-
-              
-
+                
+              }        
                      
             </div>  
 
