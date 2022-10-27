@@ -1,10 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { AiOutlineEdit,AiFillDelete } from "react-icons/ai";
 import './Input_Order.css'
 import Inputted_Order from './Inputted_Order';
 
 function Input_Order() {
+  
+  const [product, setProduct] = useState('ㄷ');
+  const [qt, setQt] = useState('2');
+  const [updateProduct, setUpdateProduct] = useState(product)
+  const [updateQt, setUpdateQt] = useState(qt)
+
+  const initOrder = [{product: product, qt:qt}]
+  const [order,setOrder] = useState(initOrder)
+  
+
+  const productValue = (e) =>{
+    
+    setProduct(e.target.value)
+  }
+
+  const qtValue = (e) =>{
+    
+    setQt(e.target.value)
+  }
+
+  const applyOrder = () => {
+    console.log("clicked")
+    
+    setOrder(current => [...current,{product: product, qt:qt}])
+    setUpdateProduct(product)
+    setUpdateQt(qt)
+    console.log(order)
+  }
+
+ 
+
   return (
     <div >
 
@@ -28,7 +59,7 @@ function Input_Order() {
 
             <div className="input-items prod-container">
               <div className="btn-container">
-                <div className="btn-scd apply">
+                <div className="btn-scd apply" onClick={applyOrder}>
                     적용
                   </div>
               </div>
@@ -37,7 +68,8 @@ function Input_Order() {
               <div className="input-items-cont input-items">
                 <div className="form-item">
                   <label htmlFor="product">제품</label>
-                  <select name="product" id="product">
+                  <select name="product" id="product" onChange={productValue} >
+                    <option value="" disabled selected>선택</option>
                     <option value="앙">앙</option>
                     <option value="무">무</option>
                     <option value="숙">숙</option>
@@ -47,12 +79,20 @@ function Input_Order() {
 
                 <div className="form-item">
                   <label htmlFor="qt">수량</label>
-                  <input type="number" name='qt' id='qt'/>              
+                  <input type="number" name='qt' id='qt' onChange={qtValue}/>              
                 
                 </div>
               </div>
 
-              <Inputted_Order/>
+              {order.map((element,index) => {
+                return (
+                  <Inputted_Order key={index} product={element.product} qt={element.qt}/>
+                )
+              })
+
+              }
+
+              
 
                      
             </div>  

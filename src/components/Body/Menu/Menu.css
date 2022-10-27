@@ -7,12 +7,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 30px;
     flex-direction: column;
+    height: 300px;
+    
 
 }
 .menu-item{
     font-size: 1.5rem;
-    background-color: aqua;
+    
 }
 
 .menu-item *{
@@ -24,6 +27,7 @@
     color: black;
     transition: all 0.3s ease-out;    
     position: relative;
+    font-weight: 700;
 }
 
 .menu-item *:hover{
@@ -40,5 +44,9 @@
 
 .pointer.hide{
     display: none;
+}
+
+.font-yellow{
+    color: var(--color-hd);
 }
 

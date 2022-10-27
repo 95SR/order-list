@@ -6,11 +6,12 @@ import './Menu.css'
 import { Link } from "react-router-dom";
 
 function Menu() {
-  const [active,setActive] = useState(false)
+  const [active,setActive] = useState()
 
-  const handleMenuClick = () => { 
-    setActive(!active)
-    console.log(active)
+  const handleMenuClick = (e) => { 
+    
+    setActive(e.currentTarget.id)
+    
   }
 
   return (
@@ -21,13 +22,13 @@ function Menu() {
 
         <div className="menu-body">
             
-            <div  className="menu-item" onClick={handleMenuClick}>
-            <Link to='/input_order'> <FaRegHandPointRight className={active ? 'pointer' : 'pointer hide'}/> 주문 입력 </Link>
+            <div  className="menu-item" onClick={handleMenuClick} id='1' >
+            <Link to='/input_order'> <FaRegHandPointRight className={active === '1' ? 'pointer' : 'pointer hide'}/> <span className={active === '1' ? 'font-yellow' : ''}>주문 입력</span> </Link>
             
             </div>
               
-            <div  className="menu-item" onClick={handleMenuClick}>
-            <Link to='/order_list'> <FaRegHandPointRight />주문 기록 확인 </Link>
+            <div  className="menu-item" onClick={handleMenuClick} id='2'>
+            <Link to='/order_list'> <FaRegHandPointRight className={active === '2' ? 'pointer' : 'pointer hide'} /><span className={active === '2' ? 'font-yellow' : ''}>주문 기록 확인</span> </Link>
             </div>
             
               
