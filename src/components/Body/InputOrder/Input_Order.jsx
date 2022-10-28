@@ -2,13 +2,15 @@ import React, { useState } from 'react'
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { AiOutlineEdit,AiFillDelete } from "react-icons/ai";
 import './Input_Order.css'
-import Inputted_Order from './Inputted_Order';
+import Popup from './Popup';
 
-function Input_Order() {
+function Input_Order({active}) {
   
   const [product, setProduct] = useState('');
   const [qt, setQt] = useState('');
   const [order, setOrder] = useState([])
+  const [popup, setPopup] = useState(false)
+  
   
   const productValue = (e) =>{
     
@@ -26,19 +28,25 @@ function Input_Order() {
     
     addOrder(product,qt)
     setProduct('')
-    setQt('')
-    
-
+    setQt('')  
   }
 
   const addOrder = (product,qt) => {
     setOrder([...order,{product,qt,id:Math.random()}])
+    
   }
 
   const delOrder = (key) => {
     const newOrder = order.filter(item => item.id !== key)
-    console.log(order)
+    setOrder(newOrder)
   }
+
+  const closeBtn = (e) => {
+    e.preventDefault()
+    setPopup(!popup)
+  }
+
+  
 
  
 
@@ -90,21 +98,21 @@ function Input_Order() {
                 </div>
               </div>   
 
-              {order.map((item,key) => {
+              {order.map((item) => {
                 return(
-                  <div className="order-inputted" key={key}>
-    <input type="text" value={item.product} className='ord' />
-    <input type="number" value={item.qt} className='ord' />
+                  <div className="order-inputted" id={item.id}>
+                    <input type="text" value={item.product} className='ord' />
+                    <input type="number" value={item.qt} className='ord' />
+                    
+                    
+                    <div className="delete" onClick={(e)=>delOrder(item.id)}>
+                      <AiFillDelete/>
+                    </div>
     
     
-    <div className="delete" onClick={(e)=>console.log(key)}>
-    <AiFillDelete/>
-    </div>
-    
-    
-  </div> 
+                  </div> 
                   
-                  )
+                )
               })
                 
               }        
@@ -115,6 +123,7 @@ function Input_Order() {
             <div className="form-item">
                 <label htmlFor="택배">택배</label>
                 <select name="택배" id="delivery">
+                  <option value="" disabled selected>선택</option>
                   <option value="yes">네</option>
                   <option value="no">아니요</option>
                   
@@ -126,6 +135,7 @@ function Input_Order() {
               <div className="form-item">
                 <label htmlFor="pay-mthd">결제방법</label>
                 <select name="pay-mthd" id="pay-mthd">
+                  <option value="" disabled selected>선택</option>
                   <option value="trf">은행</option>
                   <option value="cash">현금</option>
                 </select>
@@ -154,12 +164,16 @@ function Input_Order() {
             </div>
 
             <div className="btn-container">
-              <button className='btn'>Submit</button>
-              <button className='btn-scd'>Cancel</button>
+              <button className='btn' onClick={closeBtn}>Submit</button>
+              <button className='btn-scd' >취소</button>
             </div>
 
             
           </form>
+        </div>
+
+        <div className={popup ? '' : 'popup-hide'}>
+          <Popup closeBtn={closeBtn} ></Popup>
         </div>
       
       

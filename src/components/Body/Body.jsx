@@ -16,23 +16,15 @@ function Body() {
         <div className='body-container'>
           
         <BrowserRouter>
-        <Menu/>
+          <Menu/>
 
-            <div className="content-container">
-            
-            
+          <div className="content-container">
             <Routes>
-              
                 <Route path='/input_order' element={<Input_Order/>}/>
                 <Route path='/order_list' element={<OrderList/>}/>
-              
-                </Routes>
-      
-                
-              
-                
-            </div>
-            </BrowserRouter>   
+            </Routes>   
+          </div>
+        </BrowserRouter>   
         </div>
         
     </div>

@@ -1,0 +1,35 @@
+.date-filter{
+    
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.date-filter label,p{
+    width: fit-content;
+    
+}
+
+.date-filter input{
+    font-size: 15px;
+    flex: 1 0;
+}
+
+.edit-container .btn{
+    background-color: transparent;
+}
+
+.add.btn{
+    border: 2px solid green;
+}
+
+.edit.btn{
+    border: 2px solid orange;
+}
+
+.del.btn{
+    border: 2px solid red;
+}

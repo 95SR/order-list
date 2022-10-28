@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 function Menu() {
   const [active,setActive] = useState()
 
+  
+
   const handleMenuClick = (e) => { 
     
     setActive(e.currentTarget.id)
@@ -30,11 +32,7 @@ function Menu() {
             <div  className="menu-item" onClick={handleMenuClick} id='2'>
             <Link to='/order_list'> <FaRegHandPointRight className={active === '2' ? 'pointer' : 'pointer hide'} /><span className={active === '2' ? 'font-yellow' : ''}>주문 기록 확인</span> </Link>
             </div>
-            
-              
-            
-            
-                
+               
             </div>
         
     </div>
