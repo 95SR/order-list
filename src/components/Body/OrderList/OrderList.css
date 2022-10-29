@@ -1,6 +1,11 @@
+.input-body{
+    display: flex;
+    justify-content: space-between;
+}
+
 .date-filter{
     
-    width: 60%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -18,18 +23,50 @@
     flex: 1 0;
 }
 
+.edit-container{
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
 .edit-container .btn{
     background-color: transparent;
+    padding: 5px;
 }
 
 .add.btn{
-    border: 2px solid green;
+    border: 1px solid green;
 }
 
 .edit.btn{
-    border: 2px solid orange;
+    border: 1px solid orange;
 }
 
 .del.btn{
-    border: 2px solid red;
+    border: 1px solid red;
+}
+
+.search-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+
+.search-icon{
+    position: relative;
+    right: 20px;
+    bottom: -5px;
+}
+
+@media screen and (max-width:1240px) {
+    .input-body{
+        flex-direction: column;
+        gap: 20px;
+    }
 }
