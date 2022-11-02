@@ -10,7 +10,24 @@ function Input_Order({active}) {
   const [qt, setQt] = useState('');
   const [order, setOrder] = useState([])
   const [popup, setPopup] = useState(false)
-  
+  const [value, setValue] = useState({
+    name: '',
+    phone: '',
+    parcel: '',
+    paymentMthd: '',
+    payment: '',
+    add:'',
+    date:''
+  })
+  const [input, setInput] = useState({
+    name: '',
+    phone: '',
+    parcel: '',
+    paymentMthd: '',
+    payment: '',
+    add:'',
+    date:''
+  })
   
   const productValue = (e) =>{
     
@@ -41,9 +58,33 @@ function Input_Order({active}) {
     setOrder(newOrder)
   }
 
-  const closeBtn = (e) => {
-    e.preventDefault()
+  const closeBtn = () => {
+    
     setPopup(!popup)
+
+    window.location = '/input_order'
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    console.log(input)
+    console.log(order)
+    setPopup(!popup)
+    
+  }
+
+  const handleChange = (e) => {
+    const {name,value} = e.target;
+    console.log(e.target)
+    setValue(e.target.value)
+
+    setInput(prevInput =>{
+      return{
+        ...prevInput,
+        [name]: value
+      }
+    })
   }
 
   
@@ -62,12 +103,12 @@ function Input_Order({active}) {
             <div className="input-items">
               <div className="form-item">
                 <label htmlFor="name">고객명</label>
-                <input type='text' name='name' id='name'></input>
+                <input type='text' name='name' id='name' onChange={handleChange} value={value.name}></input>
               </div>
 
               <div className="form-item">
                 <label htmlFor="phone">전화번호</label>
-                <input type='number' name='phone' id='phone'></input>
+                <input type='tel' name='phone' id='phone' onChange={handleChange} value={value.phone}></input>
               </div>
             </div>
 
@@ -122,7 +163,7 @@ function Input_Order({active}) {
 
             <div className="form-item">
                 <label htmlFor="택배">택배</label>
-                <select name="택배" id="delivery">
+                <select name="택배" id="delivery" onChange={handleChange} value={value.parcel}>
                   <option value="" disabled selected>선택</option>
                   <option value="yes">네</option>
                   <option value="no">아니요</option>
@@ -134,7 +175,7 @@ function Input_Order({active}) {
             <div className="input-items">
               <div className="form-item">
                 <label htmlFor="pay-mthd">결제방법</label>
-                <select name="pay-mthd" id="pay-mthd">
+                <select name="pay-mthd" id="pay-mthd" onChange={handleChange} value={value.paymentMthd}>
                   <option value="" disabled selected>선택</option>
                   <option value="trf">은행</option>
                   <option value="cash">현금</option>
@@ -143,14 +184,14 @@ function Input_Order({active}) {
 
               <div className="form-item">
                 <label htmlFor="amount">결제금액</label>
-                <input type="number" name='amount' />
+                <input type="text" name='amount' onChange={handleChange} value={value.payment} />
               </div>
             </div>
 
             <div className="input-items">
               <div className="form-item-add">
                 <label htmlFor="add">주소</label>
-                <input type="text" name='add' id='add'/>
+                <input type="text" name='add' id='add' onChange={handleChange} value={value.add}/>
               </div>
 
               <div className="btn">
@@ -160,11 +201,11 @@ function Input_Order({active}) {
 
             <div className="form-item">
               <label htmlFor="date">작성 일</label>
-              <input type="date" name="date" id="date" />
+              <input type="date" name="date" id="date" onChange={handleChange} value={value.date}/>
             </div>
 
             <div className="btn-container">
-              <button className='btn' onClick={closeBtn}>Submit</button>
+              <button className='btn' onClick={handleSubmit}>Submit</button>
               <button className='btn-scd' >취소</button>
             </div>
 
