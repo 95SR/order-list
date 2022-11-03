@@ -119,3 +119,12 @@ li:hover{
   font-size: 20px;
   cursor: pointer;
 }
+
+table{
+  border: solid 1px black;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}

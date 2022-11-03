@@ -16,10 +16,7 @@ function Table() {
         qt: ''
     }]
     }])
-    const [orderItem,setOrderItem] = useState([{
-        product: '',
-        qt : ''
-    }])
+    
 
 
 
@@ -29,7 +26,7 @@ function Table() {
             const orderData = res.data ;
             
             setOrder(orderData)
-            setOrderItem(orderData.order)
+            
             console.log(orderData)
         })
         .catch(error => console.error(`Error: ${error}`))
@@ -64,7 +61,10 @@ function Table() {
                 <tr>
                     <td>{item.name}</td>
                     <td>{item.phone}</td>
-                    <td>{orderItem.map(product => <tr>{product.product}</tr>)}</td>
+                    <td>{item.order.map(prod => 
+                        <tr>
+                            <td>{prod.product}</td>
+                        </tr>)}</td>
                 </tr>   
                     )}
                 
