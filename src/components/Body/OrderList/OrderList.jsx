@@ -2,6 +2,7 @@ import React from 'react'
 import { FaThList } from "react-icons/fa";
 import './OrderList.css'
 import {AiOutlineSearch } from "react-icons/ai";
+import Table from './Table';
 
 function OrderList() {
   return (
@@ -11,6 +12,7 @@ function OrderList() {
       </div>
 
       <div className="input-body">
+        <div className="config">
         <div className="left">
           <form action="" className='date-filter'>
             <label htmlFor="date">기간</label>
@@ -46,8 +48,18 @@ function OrderList() {
           </div>
         </div>
 
+
+        </div>
+        
+        <Table/>
+
+        
+
+        
+
         
       </div>
+      
     </div>
   )
 }

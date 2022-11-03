@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { AiOutlineEdit,AiFillDelete } from "react-icons/ai";
 import './Input_Order.css'
@@ -68,21 +69,23 @@ function Input_Order({active}) {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log(input)
-    console.log(order)
+    axios.post('http://localhost:5000/orders/add', input)
+    .then(res => console.log(res.data))
+    
     setPopup(!popup)
     
   }
 
   const handleChange = (e) => {
     const {name,value} = e.target;
-    console.log(e.target)
+    
     setValue(e.target.value)
 
     setInput(prevInput =>{
       return{
         ...prevInput,
-        [name]: value
+        [name]: value,
+        order
       }
     })
   }
@@ -162,8 +165,8 @@ function Input_Order({active}) {
 
 
             <div className="form-item">
-                <label htmlFor="택배">택배</label>
-                <select name="택배" id="delivery" onChange={handleChange} value={value.parcel}>
+                <label htmlFor="parcel">택배</label>
+                <select name="parcel" id="delivery" onChange={handleChange} value={value.parcel}>
                   <option value="" disabled selected>선택</option>
                   <option value="yes">네</option>
                   <option value="no">아니요</option>
@@ -174,8 +177,8 @@ function Input_Order({active}) {
 
             <div className="input-items">
               <div className="form-item">
-                <label htmlFor="pay-mthd">결제방법</label>
-                <select name="pay-mthd" id="pay-mthd" onChange={handleChange} value={value.paymentMthd}>
+                <label htmlFor="paymentMthd">결제방법</label>
+                <select name="paymentMthd" id="pay-mthd" onChange={handleChange} value={value.paymentMthd}>
                   <option value="" disabled selected>선택</option>
                   <option value="trf">은행</option>
                   <option value="cash">현금</option>
@@ -183,8 +186,8 @@ function Input_Order({active}) {
               </div>
 
               <div className="form-item">
-                <label htmlFor="amount">결제금액</label>
-                <input type="text" name='amount' onChange={handleChange} value={value.payment} />
+                <label htmlFor="payment">결제금액</label>
+                <input type="text" name='payment' onChange={handleChange} value={value.payment} />
               </div>
             </div>
 
