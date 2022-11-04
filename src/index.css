@@ -31,9 +31,12 @@ body{
 }
 
 .menu-container{
-  width: var(--width-menu);
+  min-width: var(--width-menu);
+  
 
 }
+
+
 
 .main-container{
   
@@ -42,13 +45,14 @@ body{
 }
 
 @media screen and (max-width:700px) {
-  .main-container,
-  .menu-container{
+  .main-container{
     width: var(--width-container-sm);
   }
 
   
 }
+
+
 
 .title{
   

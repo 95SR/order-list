@@ -1,7 +1,22 @@
 .menu-container{
     background-color: white;
-    height: fit-content
+    height: fit-content;
+    width: var(--width-menu)
 }
+
+@media screen and (max-width:1600px){
+    .menu-container{
+      width: 50vw;
+      
+    }
+  }
+
+  @media screen and (max-width:800px){
+    .menu-container{
+      width: 90%;
+      
+    }
+  }
 
 .menu-body{
     display: flex;
