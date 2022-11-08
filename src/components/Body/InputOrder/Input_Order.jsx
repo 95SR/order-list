@@ -30,6 +30,7 @@ function Input_Order({active}) {
     date:''
   })
   
+
   const productValue = (e) =>{
     
     setProduct(e.target.value)
@@ -66,13 +67,21 @@ function Input_Order({active}) {
     window.location = '/input_order'
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    axios.post('http://localhost:5000/orders/add', input)
-    .then(res => console.log(res.data))
+    try{
+      await axios.post('http://localhost:5000/orders/add', input) ;
+
+      setPopup(!popup)
+    } catch (error) {
+      return alert("Fill all field");
+    }
+
     
-    setPopup(!popup)
+    
+    
+    
     
   }
 
@@ -80,6 +89,7 @@ function Input_Order({active}) {
     const {name,value} = e.target;
     
     setValue(e.target.value)
+    
 
     setInput(prevInput =>{
       return{
@@ -88,6 +98,8 @@ function Input_Order({active}) {
         order
       }
     })
+
+    
   }
 
   
@@ -106,12 +118,13 @@ function Input_Order({active}) {
             <div className="input-items">
               <div className="form-item">
                 <label htmlFor="name">고객명</label>
-                <input type='text' name='name' id='name' onChange={handleChange} value={value.name}></input>
+                <input type='text' name='name' id='name' onChange={handleChange} value={value.name} required></input>
               </div>
 
               <div className="form-item">
                 <label htmlFor="phone">전화번호</label>
-                <input type='tel' name='phone' id='phone' onChange={handleChange} value={value.phone}></input>
+                <input type='tel' name='phone' id='phone' placeholder="010-xxxx-xxxx" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" onChange={handleChange} value={value.phone} required></input>
+                <span class="validity"></span>  
               </div>
             </div>
 
@@ -126,7 +139,7 @@ function Input_Order({active}) {
               <div className="input-items-cont input-items">
                 <div className="form-item">
                   <label htmlFor="product">제품</label>
-                  <select name="product" id="product" onChange={productValue} value={product}>
+                  <select name="product" id="product" onChange={productValue} value={product} required>
                     <option value="" disabled selected>선택</option>
                     <option value="앙">앙</option>
                     <option value="무">무</option>
@@ -137,7 +150,7 @@ function Input_Order({active}) {
 
                 <div className="form-item">
                   <label htmlFor="qt">수량</label>
-                  <input type="number" name='qt' id='qt' value={qt} onChange={qtValue}/>              
+                  <input type="number" name='qt' id='qt' value={qt} onChange={qtValue} required/>              
                 
                 </div>
               </div>   
@@ -166,10 +179,10 @@ function Input_Order({active}) {
 
             <div className="form-item">
                 <label htmlFor="parcel">택배</label>
-                <select name="parcel" id="delivery" onChange={handleChange} value={value.parcel}>
+                <select name="parcel" id="delivery" onChange={handleChange} value={value.parcel} required>
                   <option value="" disabled selected>선택</option>
-                  <option value="yes">네</option>
-                  <option value="no">아니요</option>
+                  <option value="네">네</option>
+                  <option value="아니요">아니요</option>
                   
                 </select>              
               
@@ -178,23 +191,23 @@ function Input_Order({active}) {
             <div className="input-items">
               <div className="form-item">
                 <label htmlFor="paymentMthd">결제방법</label>
-                <select name="paymentMthd" id="pay-mthd" onChange={handleChange} value={value.paymentMthd}>
+                <select name="paymentMthd" id="pay-mthd" onChange={handleChange} value={value.paymentMthd} required>
                   <option value="" disabled selected>선택</option>
-                  <option value="trf">은행</option>
-                  <option value="cash">현금</option>
+                  <option value="이체">은행</option>
+                  <option value="현금">현금</option>
                 </select>
               </div>
 
               <div className="form-item">
                 <label htmlFor="payment">결제금액</label>
-                <input type="text" name='payment' onChange={handleChange} value={value.payment} />
+                <input type="text" name='payment' onChange={handleChange} value={value.payment} required/>
               </div>
             </div>
 
             <div className="input-items">
               <div className="form-item-add">
                 <label htmlFor="add">주소</label>
-                <input type="text" name='add' id='add' onChange={handleChange} value={value.add}/>
+                <input type="text" name='add' id='add' onChange={handleChange} value={value.add} required/>
               </div>
 
               <div className="btn">
@@ -204,7 +217,7 @@ function Input_Order({active}) {
 
             <div className="form-item">
               <label htmlFor="date">작성 일</label>
-              <input type="date" name="date" id="date" onChange={handleChange} value={value.date}/>
+              <input type="date"   name="date" id="date" onChange={handleChange} value={value.date} required/>
             </div>
 
             <div className="btn-container">

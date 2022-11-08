@@ -4,19 +4,22 @@
     background-color: var(--color-bg);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: auto;
+    
 }
 
 .body-container{
     height: 95%;
-    width: 95vw;
+   
     gap: 3rem;
     display: flex;
     padding: 10px;
+    
 }
 .content-container{
-    width: 65%;
+    width: 100%;
+    background-color: aqua;
     
 }
 
@@ -25,7 +28,7 @@
 @media screen and (min-width:1600px) {
     .body-container{
         
-        width: 1300px;
+        width: 100%;
         
     }
 }

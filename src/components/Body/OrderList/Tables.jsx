@@ -1,12 +1,10 @@
 import React, {useEffect,useState} from 'react'
 import axios from 'axios';
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from "@material-ui/core/Paper";
+import { DataGrid,GridRenderCellParams } from '@mui/x-data-grid';
+import './tables.css'
+
+  
+  
 
 function Tables() {
     const url= 'http://localhost:5000/orders';
@@ -23,6 +21,8 @@ function Tables() {
         qt: ''
     }]
     }])
+
+    const [rows, setRows] = useState([])
     
 
 
@@ -33,61 +33,101 @@ function Tables() {
             const orderData = res.data ;
             
             setOrder(orderData)
-            
+            setRows(orderData)
             console.log(orderData)
+            
         })
         .catch(error => console.error(`Error: ${error}`))
     }
 
     useEffect(()=> {
         getData();
+        
     },[])
 
+    
+    
+    const columns = [
+    
+    
+        {
+            field: 'name',
+            headerName: '이름',
+            width: 200,
+        },
+        {
+            field: 'phone',
+            headerName: '전화번호',
+            width: 100
+        },
+        {
+            field: 'order',
+            headerName: '주문',
+            width: 100,
+            renderCell: (params) => (
+                <div className='product'>
+                    <ul >
+                        {params.value.map((item, index) => (
+                        <li key={index}>{item.product}</li>
+                        ))}
+                    </ul>
+                    <ul >
+                        {params.value.map((item, index) => (
+                        <li key={index}>{item.qt}</li>
+                        ))}
+                    </ul>
 
-
+                </div>
+                
+                
+            )
+        },
+        {
+            field: 'payment',
+            headerName: '결제',
+            width: 150
+        },
+        {
+            field: 'paymentMthd',
+            headerName: '결제방법',
+            width: 100
+        },
+        {
+            field: 'parcel',
+            headerName: '택배',
+            width: 100
+        },
+        {
+            field: 'add',
+            headerName: '주소',
+            width: 300
+        },
+        {
+            field: 'date',
+            headerName: '날짜',
+            width: 150,
+            type:'date',
+            valueGetter: ({ value }) => new Date(value),
+            
+        },
+       
+     
+    
+        
+      ];
 
     return (
-    <div>
-         <TableContainer component={Paper}>
-            <Table aria-label="simple table" stickyHeader style={{ width: 1200 }}>
-                <TableHead>
-                    <TableRow>
-                        <TableCell >이름</TableCell>
-                        <TableCell>전화번호</TableCell>
-                        <TableCell>제품</TableCell>
-                        <TableCell>수량</TableCell>
-                        <TableCell>택배</TableCell>
-                        <TableCell>결제방법</TableCell>
-                        <TableCell>결제금액</TableCell>
-                        <TableCell>주소</TableCell>
-                        <TableCell>작성일</TableCell>
-                    </TableRow>
-                </TableHead>
-
-                <TableBody>
-                    {order.map(item =>
-                        <TableRow>
-                            <TableCell>{item.name}</TableCell>
-                            <TableCell>{item.phone}</TableCell>
-                            <TableCell>{item.order.map(prod => 
-                                <TableRow>{prod.product}</TableRow>)}</TableCell>
-                            <TableCell>{item.order.map(prod => 
-                                <TableRow>{prod.qt}</TableRow>)}</TableCell>
-                            <TableCell>{item.parcel}</TableCell>
-                            <TableCell>{item.paymentMthd}</TableCell>
-                            <TableCell>{item.payment}</TableCell>
-                            <TableCell>{item.add}</TableCell>
-                            <TableCell>{item.date}</TableCell>
-
-                        </TableRow>)}
-                </TableBody>
-
-            </Table>
-
-
-        </TableContainer>
-        
-        </div>
+    <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        checkboxSelection
+        disableSelectionOnClick
+        getRowId={row => row._id}
+        getRowHeight={() => 'auto'}
+      />
+    </div>
   )
 }
 

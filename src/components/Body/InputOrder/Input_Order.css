@@ -2,8 +2,13 @@
     background-color: white;
     padding: 2rem;
     margin-bottom: 30px;
+    height: 100%;
     
-    
+  }
+
+  .big_container{
+    background-color: aquamarine;
+    width: 1000px
   }
   form{
     width: 100%;
@@ -25,7 +30,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    
+    position: relative;
   }
 
   input,select{
@@ -125,3 +130,13 @@ form>.btn-container{
 .popup-hide{
   display: none;
 }
+
+input:invalid + span::after {
+  position: absolute ;
+  content: "input valid phone";
+  padding-left: 5px;
+  color: #8b0000;
+  bottom: -20px;
+  left: 105px;
+}
+

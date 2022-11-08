@@ -31,7 +31,8 @@ body{
 }
 
 .menu-container{
-  min-width: var(--width-menu);
+  min-width: 20vw;
+  
   
 
 }
