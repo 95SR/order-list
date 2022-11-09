@@ -7,15 +7,16 @@
   }
 
   .big_container{
-    background-color: aquamarine;
-    width: 1000px
+    
+    height: 95%;
   }
   form{
     width: 100%;
     display: flex;
     flex-direction: column;
-    
+    height: 100%;
     gap: 30px;
+    justify-content: space-around;
   }
 
   .input-items{

@@ -6,7 +6,7 @@ import Tables from './Tables';
 
 function OrderList() {
   return (
-    <div>
+    <div className='big_container'>
       <div className="title">
         <FaThList/>주문 목록
       </div>

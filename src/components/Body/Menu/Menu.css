@@ -6,17 +6,17 @@
 
 @media screen and (max-width:1600px){
     .menu-container{
-      width: 50vw;
-      
+      width: 100%;
+      margin-top: 0;
+      background-color: var(--color-hd);
     }
-  }
 
-  @media screen and (max-width:800px){
-    .menu-container{
-      width: 90%;
-      
+    .menu-container .title{
+        display: none;
     }
-  }
+}
+
+  
 
 .menu-body{
     display: flex;
@@ -27,6 +27,24 @@
     height: 300px;
     
 
+}
+
+@media screen and (max-width:1600px){
+    .menu-body{
+        flex-direction: row;
+        justify-content: space-around;
+        
+        height: fit-content;
+    }
+
+    .menu-item *:hover{
+        color: rgb(53, 53, 53);
+
+    }
+
+   
+
+   
 }
 .menu-item{
     font-size: 1.5rem;
@@ -45,11 +63,7 @@
     font-weight: 700;
 }
 
-.menu-item *:hover{
-    color: var(--color-hd);
-    
 
-}
 
 .pointer{
     display: block;
@@ -61,7 +75,5 @@
     display: none;
 }
 
-.font-yellow{
-    color: var(--color-hd);
-}
+
 

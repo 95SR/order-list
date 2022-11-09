@@ -107,7 +107,7 @@ function Input_Order({active}) {
  
 
   return (
-    <div >
+    <div className='big_container'>
 
         <div className="title">
         <BsFillCartPlusFill/>주문 입력
