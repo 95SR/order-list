@@ -14,11 +14,11 @@
    
     gap: 3rem;
     display: flex;
-    padding: 10px;
+    width: 100vw;
     
 }
 .content-container{
-    width: 100%;
+   width: 90%;
     height: 100%;
     
 }
