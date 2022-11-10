@@ -34,7 +34,7 @@ function Tables() {
             
             setOrder(orderData)
             setRows(orderData)
-            console.log(orderData)
+            
             
         })
         .catch(error => console.error(`Error: ${error}`))

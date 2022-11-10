@@ -1,20 +1,36 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaRegHandPointRight } from "react-icons/fa";
 import './Menu.css'
 import { Link } from "react-router-dom";
+import useReactPath from './useReactPath' 
 
 function Menu() {
-  const [active,setActive] = useState()
-
-  
+  const [active,setActive] = useState();
 
   const handleMenuClick = (e) => { 
     
     setActive(e.currentTarget.id)
     
   }
+
+  const activePage = () => {
+    console.log(window.location.pathname== '/input_order')
+    if (window.location.pathname == '/input_order') {
+      setActive('1')
+    } else if (window.location.pathname == '/order_list') {
+      setActive('2')
+    }
+    console.log(path)
+  }
+
+  
+
+  const path = useReactPath();
+React.useEffect(() => {
+  activePage()
+}, [path]);
 
   return (
     <div className='menu-container'>
