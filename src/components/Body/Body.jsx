@@ -16,7 +16,10 @@ function Body() {
         <div className='body-container'>
           
         <BrowserRouter>
-          <Menu/>
+        
+        <Menu />
+        
+          
 
           <div className="content-container">
             <Routes>

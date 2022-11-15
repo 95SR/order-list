@@ -8,6 +8,7 @@ import useReactPath from './useReactPath'
 
 function Menu() {
   const [active,setActive] = useState();
+  const [path, setPath] = useState(window.location.pathname);
 
   const handleMenuClick = (e) => { 
     
@@ -19,21 +20,30 @@ function Menu() {
     console.log(window.location.pathname== '/input_order')
     if (window.location.pathname == '/input_order') {
       setActive('1')
+      console.log(active)
     } else if (window.location.pathname == '/order_list') {
       setActive('2')
+      console.log(active)
     }
-    console.log(path)
+    
+    
   }
+
+  useEffect(() => {
+    setPath(window.location.pathname)
+    console.log(path)
+  });
+
+  useEffect(() => {
+    console.log(active)
+
+  },[path])
 
   
 
-  const path = useReactPath();
-React.useEffect(() => {
-  activePage()
-}, [path]);
-
   return (
-    <div className='menu-container'>
+    
+      <div className='menu-container'>
         <div className="title">
            <AiOutlineMenu/> 메뉴
         </div> 
@@ -51,7 +61,9 @@ React.useEffect(() => {
                
             </div>
         
-    </div>
+      </div>
+    
+    
   )
 }
 
