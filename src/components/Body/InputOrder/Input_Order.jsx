@@ -78,11 +78,7 @@ function Input_Order({active}) {
       return alert("Fill all field");
     }
 
-    
-    
-    
-    
-    
+
   }
 
   const handleChange = (e) => {
@@ -101,10 +97,6 @@ function Input_Order({active}) {
 
     
   }
-
-  
-
- 
 
   return (
     <div className='big_container'>

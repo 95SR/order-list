@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react';
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaRegHandPointRight } from "react-icons/fa";
 import './Menu.css'
-import { Link } from "react-router-dom";
-import useReactPath from './useReactPath' 
+import { Link , useLocation} from "react-router-dom";
+ 
 
 function Menu() {
   const [active,setActive] = useState();
-  const [path, setPath] = useState(window.location.pathname);
+  
 
   const handleMenuClick = (e) => { 
     
@@ -17,27 +17,22 @@ function Menu() {
   }
 
   const activePage = () => {
-    console.log(window.location.pathname== '/input_order')
-    if (window.location.pathname == '/input_order') {
+    
+    if (location.pathname == '/input_order') {
       setActive('1')
-      console.log(active)
-    } else if (window.location.pathname == '/order_list') {
+      
+    } else if (location.pathname == '/order_list') {
       setActive('2')
-      console.log(active)
+      
     }
-    
-    
   }
+  let location = useLocation()
+  
+  useEffect(()=>{
+    activePage();
+    
 
-  useEffect(() => {
-    setPath(window.location.pathname)
-    console.log(path)
-  });
-
-  useEffect(() => {
-    console.log(active)
-
-  },[path])
+  },[location])
 
   
 

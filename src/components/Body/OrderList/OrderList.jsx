@@ -1,11 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaThList } from "react-icons/fa";
 import './OrderList.css'
-import {AiOutlineSearch } from "react-icons/ai";
 import Tables from './Tables';
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
 
 function OrderList() {
+  const [selectionModel, setSelectionModel] = useState([])
+  
+  const deleteOrder = (id) => {
+    axios.delete('http://localhost:5000/orders/'+id)
+    .then(res => {
+      return alert("삭제되었습니다");
+
+      
+
+
+    })
+    .catch(err => {
+      console.log(selectionModel)
+      return alert("실패했습니다");
+      
+    })
+  }
+  
   return (
     <div className='big_container'>
       <div className="title">
@@ -20,15 +39,21 @@ function OrderList() {
               <input type="date" name='date' id='date-from'  />
               <p>~</p>
               <input type="date" name="date" id="date-to" />
+              <div className="btn">검색</div>
             </form>
 
-            <div className="edit-container">
-            <Link to='/input_order'> <div className="add btn">추가</div> </Link>
-              <div className="edit btn">수정</div>
-              <div className="del btn">삭제</div>
-            </div>
+            
           </div>
-          
+
+          <div className="right">
+          <div className="edit-container"> 
+              <Link to='/input_order'> <div className="add btn">추가</div> </Link>
+              <div className="edit btn">수정</div>
+              <div className="del btn" onClick={() => deleteOrder(selectionModel)}>삭제</div>
+            </div>
+
+          </div>
+        {/*
           <div className="right">
             <div className="search-container">
               <div className="category">
@@ -48,11 +73,15 @@ function OrderList() {
               </div>
             </div>
           </div>
-
+  */}
 
         </div>
         
-        <Tables/>
+        <Tables setSelectionModel={setSelectionModel} />
+
+        
+
+       
 
         
 

@@ -1,7 +1,7 @@
 .config{
     display: flex;
     justify-content: space-between;
-    
+    margin-bottom: 30px;
     align-items: flex-start;
 }
 
@@ -68,6 +68,14 @@
 
 @media screen and (max-width:1240px) {
     .input-body{
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width:900px) {
+    .config{
+        display: flex;
         flex-direction: column;
         gap: 20px;
     }

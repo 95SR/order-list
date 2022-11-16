@@ -6,8 +6,8 @@ import './tables.css'
   
   
 
-function Tables() {
-    const url= 'http://localhost:5000/orders';
+function Tables({setSelectionModel}) {
+    const url= 'http://localhost:5000/orders/';
     const [order,setOrder] = useState([{
         name: '',
     phone: '',
@@ -21,6 +21,7 @@ function Tables() {
         qt: ''
     }]
     }])
+
 
     const [rows, setRows] = useState([])
     
@@ -58,12 +59,12 @@ function Tables() {
         {
             field: 'phone',
             headerName: '전화번호',
-            width: 100
+            width: 200
         },
         {
             field: 'order',
             headerName: '주문',
-            width: 100,
+            width: 200,
             renderCell: (params) => (
                 <div className='product'>
                     <ul >
@@ -126,6 +127,9 @@ function Tables() {
         disableSelectionOnClick
         getRowId={row => row._id}
         getRowHeight={() => 'auto'}
+        onSelectionModelChange={(ids) => {
+            setSelectionModel(ids)
+        }}
       />
     </div>
   )
