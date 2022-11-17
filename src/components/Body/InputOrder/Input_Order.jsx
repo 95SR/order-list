@@ -115,8 +115,8 @@ function Input_Order({active}) {
 
               <div className="form-item">
                 <label htmlFor="phone">전화번호</label>
-                <input  name='phone' id='phone' placeholder="010-xxxx-xxxx" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" onChange={handleChange} value={value.phone} required></input>
-                <span class="validity"></span>  
+                <input  name='phone' id='phone'   onChange={handleChange} value={value.phone} required></input>
+                {/*<span class="validity"></span>  */}
               </div>
             </div>
 

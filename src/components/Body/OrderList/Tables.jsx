@@ -6,46 +6,7 @@ import './tables.css'
   
   
 
-function Tables({setSelectionModel}) {
-    const url= 'http://localhost:5000/orders/';
-    const [order,setOrder] = useState([{
-        name: '',
-    phone: '',
-    parcel: '',
-    paymentMthd: '',
-    payment: '',
-    add:'',
-    date:'',
-    order:[{
-        product: '',
-        qt: ''
-    }]
-    }])
-
-
-    const [rows, setRows] = useState([])
-    
-
-
-
-    const getData = () => {
-        axios.get(`${url}`)
-        .then((res) => {
-            const orderData = res.data ;
-            
-            setOrder(orderData)
-            setRows(orderData)
-            
-            
-        })
-        .catch(error => console.error(`Error: ${error}`))
-    }
-
-    useEffect(()=> {
-        getData();
-        
-    },[])
-
+function Tables({setSelectionModel,rows}) {
     
     
     const columns = [
