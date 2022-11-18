@@ -26,10 +26,7 @@ function OrderList() {
 
 
     const [rows, setRows] = useState([])
-    const excelData = [
-{"_id":"6369b858acf50387eec4d19f","name":"최태영","phone":1066662222,"parcel":"네","paymentMthd":"이체","payment":30000,"add":"대전","date":"2022-11-07T00:00:00.000Z","order":[{"product":"앙","qt":1,"_id":"6369b858acf50387eec4d1a0"},{"product":"숙","qt":3,"_id":"6369b858acf50387eec4d1a1"}],"__v":0},
-{"_id":"6375d03444943a354b21215e","name":"리리","phone":1067231774,"parcel":"네","paymentMthd":"현금","payment":20000,"add":"서울","date":"2022-11-17T00:00:00.000Z","order":[{"product":"앙","qt":2,"_id":"6375d03444943a354b21215f"},{"product":"무","qt":4,"_id":"6375d03444943a354b212160"}],"__v":0}
-]
+    const excelData = JSON.stringify(order)
 
   const getData = () => {
     axios.get(`${url}`)
@@ -91,7 +88,7 @@ const multipleDelete = async () => {
               <div className="btn">검색</div>
             </form>
 
-           {/*<DownloadExcel excelData={excelData} fileName={"주문일지"}/>*/ } 
+            <DownloadExcel excelData={excelData} fileName={"주문일지"}/>
           </div>
 
           <div className="right">
