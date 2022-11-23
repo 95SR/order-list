@@ -1,13 +1,16 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import * as FileSaver from 'file-saver'
 import XLSX from 'sheetjs-style';
 
 function DownloadExcel({excelData, fileName}) {
    
     const [order,setOrder] = useState([])
+    const [jumun,setJumun] = useState([])
     const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
     const fileExtension = '.xlsx';
     const jsData = JSON.parse(excelData)
+    const isMounted = useRef(true)
+    
     {/*console.log(jsData[0].order.length)*/}
     
 
@@ -32,10 +35,10 @@ function DownloadExcel({excelData, fileName}) {
         jsData.forEach((data) => transformData(data))
     },[]) 
 */}
-const transformData = (data) => {
+const transformData =  (data) => {
     const orderItem = data.order
     
-    console.log(data)
+    {/*console.log(data)*/}
     orderItem.forEach((ord)=> {
         
         const basic = {name: data.name, 
@@ -46,31 +49,57 @@ const transformData = (data) => {
             add:data.add,
             date:data.date}
         
+            
+                
+        
+        {/*setOrder(prevInput => [...prevInput, ord,basic])*/}
 
-        setOrder({...order, basic,ord})
-        console.log(order)
+        
+        let merged = {...basic,...ord}
+        
+        setOrder(prevInput => [...prevInput, merged])
+
+        if(order !== []){
+            console.log
+        }
+ 
     })
-    
 
-    
 }
+
+useEffect(() => {
+    if (isMounted.current){
+        isMounted.current = false
+        
+    } else {
+        console.log('d')
+        console.log(order)
+    }
+    
+},[order])
+
+const exportToExcel = async () => {
+    const ws = XLSX.utils.json_to_sheet(order);
+    const wb = {Sheets: {'data': ws}, SheetNames: ['data']};
+    const excelBuffer = XLSX.write(wb,{bookType: 'xlsx', type: 'array'})
+    const data = new Blob([excelBuffer], {type:fileType})
+    FileSaver.saveAs(data, fileName + fileExtension)
+}
+
+
+
     const handleClick = () => {
-    jsData.forEach((data) =>  transformData(data))
+    jsData.forEach((data) =>  {
+        transformData(data)
+        
+    })
+    const dataNew= JSON.stringify(order)
+    
+    //exportToExcel()
     }
    
 
     
-
-    
-
-
-    const exportToExcel = async () => {
-        const ws = XLSX.utils.json_to_sheet(excelData);
-        const wb = {Sheets: {'data': ws}, SheetNames: ['data']};
-        const excelBuffer = XLSX.write(wb,{bookType: 'xlsx', type: 'array'})
-        const data = new Blob([excelBuffer], {type:fileType})
-        FileSaver.saveAs(data, fileName + fileExtension)
-    }
   return (
     <div className="btn download" onClick={handleClick}>Download Excel</div>
   )
