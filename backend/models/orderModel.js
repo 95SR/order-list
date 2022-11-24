@@ -13,7 +13,8 @@ const orderSchema = new Schema({
     order:[
         {
         product:{type:String},
-        qt: {type: Number}
+        qt: {type: Number},
+        itemTots: {type: Number}
         }
     ]
 })

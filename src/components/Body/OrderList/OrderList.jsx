@@ -20,7 +20,8 @@ function OrderList() {
     date:'',
     order:[{
         product: '',
-        qt: ''
+        qt: '',
+        orderTots: ''
     }]
     }])
 
@@ -94,7 +95,7 @@ const multipleDelete = async () => {
           <div className="right">
           <div className="edit-container"> 
               <Link to='/input_order'> <div className="add btn">추가</div> </Link>
-              <div className="edit btn">수정</div>
+              {/*<div className="edit btn">수정</div>*/}
               <div className="del btn" onClick={multipleDelete}>삭제</div>
             </div>
 

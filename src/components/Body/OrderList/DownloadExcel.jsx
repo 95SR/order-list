@@ -5,11 +5,11 @@ import XLSX from 'sheetjs-style';
 function DownloadExcel({excelData, fileName}) {
    
     const [order,setOrder] = useState([])
-    const [jumun,setJumun] = useState([])
+    const [jumun,setJumun] = useState(false)
     const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
     const fileExtension = '.xlsx';
     const jsData = JSON.parse(excelData)
-    const isMounted = useRef(true)
+    
     
     {/*console.log(jsData[0].order.length)*/}
     
@@ -58,22 +58,19 @@ const transformData =  (data) => {
         let merged = {...basic,...ord}
         
         setOrder(prevInput => [...prevInput, merged])
+        setJumun(true)
 
-        if(order !== []){
-            console.log
-        }
+
+       
  
     })
 
 }
 
 useEffect(() => {
-    if (isMounted.current){
-        isMounted.current = false
-        
-    } else {
-        console.log('d')
-        console.log(order)
+    if (jumun === true){
+        exportToExcel()
+        setJumun(false)
     }
     
 },[order])

@@ -38,6 +38,11 @@ function Tables({setSelectionModel,rows}) {
                         <li key={index}>{item.qt}</li>
                         ))}
                     </ul>
+                    <ul >
+                        {params.value.map((item, index) => (
+                        <li key={index}>{item.itemTots}</li>
+                        ))}
+                    </ul>
 
                 </div>
                 
@@ -46,7 +51,7 @@ function Tables({setSelectionModel,rows}) {
         },
         {
             field: 'payment',
-            headerName: '결제',
+            headerName: '총결제',
             width: 150
         },
         {
@@ -79,7 +84,7 @@ function Tables({setSelectionModel,rows}) {
       ];
 
     return (
-    <div style={{ height: '90%', width: '100%' }}>
+    <div style={{ height: '80%', width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}

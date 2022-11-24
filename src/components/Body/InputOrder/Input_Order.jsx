@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { AiOutlineEdit,AiFillDelete } from "react-icons/ai";
@@ -29,8 +29,10 @@ function Input_Order({active}) {
     add:'',
     date:''
   })
-  
-
+  const [price,setPrice] = useState(0)
+  const [totPrice, setTotPrice] = useState(0)
+  const [itemTot, setItemTot] = useState(false)
+  const [itemTots, setItemTots] = useState(0)
   const productValue = (e) =>{
     
     setProduct(e.target.value)
@@ -40,25 +42,70 @@ function Input_Order({active}) {
   const qtValue = (e) =>{
     
     setQt(e.target.value)
+    if (product==='앙'){
+      setPrice(10000)
+    } else if(product==='무') {
+      setPrice(15000)
+    } else if(product==='숙') {
+      setPrice(10000)
+    } else {
+      setPrice(17000)
+    }
     
+    
+
   }
 
+  
   const handleOrder =() => {
     
-    addOrder(product,qt)
-    setProduct('')
-    setQt('')  
+    
+    
+     
+
+    setItemTots(qt*price)
+
+    
+
+    setItemTot(true)
+
   }
 
-  const addOrder = (product,qt) => {
-    setOrder([...order,{product,qt,id:Math.random()}])
+  useEffect(()=>{
+    if(itemTot === true){
+      setProduct('')
+    setQt('') 
+      addOrder(product,qt,itemTots)
+      setItemTot(false)
+    }
+  },[itemTot])
+
+  const addOrder = (product,qt,itemTots) => {
     
+    setOrder([...order,{product,qt,itemTots,id:Math.random()}])
+    //setItemTot(qt*price) 
   }
+
+  useEffect(()=>{
+    
+    let x=0
+
+    order.forEach((item) => {
+      x = x + item.itemTots
+    })
+    console.log(x)
+    //setTotPrice((prev) => prev + itemTots)
+    setTotPrice(x)
+    //console.log(totPrice)
+
+  },[order])
 
   const delOrder = (key) => {
     const newOrder = order.filter(item => item.id !== key)
     setOrder(newOrder)
   }
+
+
 
   const closeBtn = () => {
     
@@ -78,6 +125,8 @@ function Input_Order({active}) {
       return alert("Fill all field");
     }
 
+    console.log(input)
+
 
   }
 
@@ -91,10 +140,10 @@ function Input_Order({active}) {
       return{
         ...prevInput,
         [name]: value,
-        order
+        order,
+        totPrice
       }
     })
-
     
   }
 
@@ -152,7 +201,7 @@ function Input_Order({active}) {
                   <div className="order-inputted" id={item.id}>
                     <input type="text" value={item.product} className='ord' />
                     <input type="number" value={item.qt} className='ord' />
-                    
+                    <input type="number" value={item.itemTots} className='ord' />
                     
                     <div className="delete" onClick={(e)=>delOrder(item.id)}>
                       <AiFillDelete/>
@@ -191,8 +240,8 @@ function Input_Order({active}) {
               </div>
 
               <div className="form-item">
-                <label htmlFor="payment">결제금액</label>
-                <input type="text" name='payment' onChange={handleChange} value={value.payment} required/>
+                <label htmlFor="payment">총결제금액</label>
+                <input type="text" name='payment' onChange={handleChange} value={totPrice} required/>
               </div>
             </div>
 
