@@ -28,6 +28,8 @@ function OrderList() {
 
     const [rows, setRows] = useState([])
     const excelData = JSON.stringify(order)
+    const [date1,setDate1] = useState('')
+    const [date2,setDate2] = useState('')
 
   const getData = () => {
     axios.get(`${url}`)
@@ -71,6 +73,35 @@ const multipleDelete = async () => {
 
     })
   }
+
+  const handleClick = () => {
+    const parse_date1 = Date.parse(date1)
+    const parse_date2 = Date.parse(date2)
+    console.log(parse_date1,parse_date2)
+    console.log(Date.parse(rows[0].date))
+
+    const newDate = order.filter((item) => 
+      Date.parse(item.date) >= parse_date1 && Date.parse(item.date) <= parse_date2
+    )
+
+    setRows(newDate)
+
+    
+
+    
+
+  }
+
+  const handleChange = (e) => {
+    const {name,value} = e.target;
+    if (name === 'date1'){
+      setDate1(value)
+    }
+    if (name === 'date2'){
+      setDate2(value)
+    }
+
+  }
   
   return (
     <div className='big_container'>
@@ -83,10 +114,10 @@ const multipleDelete = async () => {
           <div className="left">
             <form action="" className='date-filter'>
               <label htmlFor="date">기간</label>
-              <input type="date" name='date' id='date-from'  />
+              <input type="date" name='date1' id='date-from' onChange={handleChange} value={date1}/>
               <p>~</p>
-              <input type="date" name="date" id="date-to" />
-              <div className="btn">검색</div>
+              <input type="date" name="date2" id="date-to" onChange={handleChange} value={date2} />
+              <div className="btn" onClick={handleClick}>검색</div>
             </form>
 
             <DownloadExcel excelData={excelData} fileName={"주문일지"}/>
