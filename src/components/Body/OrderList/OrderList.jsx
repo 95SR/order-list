@@ -9,7 +9,7 @@ import DownloadExcel from './DownloadExcel';
 
 function OrderList() {
   const [selectionModel, setSelectionModel] = useState([])
-  const url= 'http://localhost:5000/orders/';
+  const url= 'https://ddeok-jumun.herokuapp.com/orders/';
     const [order,setOrder] = useState([{
         name: '',
     phone: '',
@@ -64,7 +64,7 @@ const multipleDelete = async () => {
 
 
   const deleteOrder = (id) => {
-    axios.delete('http://localhost:5000/orders/'+id)
+    axios.delete('https://ddeok-jumun.herokuapp.com/'+id)
     .then(res => {
       getData();
     })

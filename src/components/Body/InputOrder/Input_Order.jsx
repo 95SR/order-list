@@ -118,7 +118,7 @@ function Input_Order({active}) {
     e.preventDefault()
 
     try{
-      await axios.post('http://localhost:5000/orders/add', input) ;
+      await axios.post('https://ddeok-jumun.herokuapp.com/orders/add', input) ;
 
       setPopup(!popup)
     } catch (error) {
